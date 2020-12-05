@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
+=======
+# Byte
+-compiled / optimized / DLL files
+>>>>>>> add: initial boiler plate :tada:
 __pycache__/
 *.py[cod]
 *$py.class
@@ -127,3 +132,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Credentials
+/src/credentials.json
+/src/*.pickle
+
+# idea files
+.idea/
