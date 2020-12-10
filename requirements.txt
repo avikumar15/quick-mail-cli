@@ -29,3 +29,4 @@ blinker~=1.4
 simplejson~=3.16.0
 setuptools~=45.2.0
 click~=7.1.2
+zope.interface~=5.2.0
