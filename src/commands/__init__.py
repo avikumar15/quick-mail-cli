@@ -1,7 +1,6 @@
-import os
 import inspect
 from contextlib import suppress
-from argparse import ArgumentParser, ArgumentError, Namespace
+from argparse import ArgumentParser, Namespace
 from typing import Dict
 
 from zope.interface import Interface, implementer
@@ -13,48 +12,52 @@ from src.utils.misc import walk_modules
 
 class ICommand(Interface):
 
-    def add_commands(parser: ArgumentParser) -> None:
+    def add_arguments(parser: ArgumentParser) -> None:
         pass
 
-    def run(args: Namespace) -> None:
+    def run_command(args: Namespace) -> None:
         pass
 
 
-def iter_subcommands(cls):
+def populate_commands(cls):
+
+    # finding all files inside src.commands, and returning files which have classes inherited from ICommand
     for module in walk_modules('src.commands'):
         for obj in vars(module).values():
             with suppress(Invalid, MultipleInvalid):
                 if (
                         inspect.isclass(obj)
-                        and verifyClass(ICommand, obj)
+                        # and verifyClass(ICommand, obj)
                         and obj.__module__ == module.__name__
                         and not obj == cls
                 ):
-                    print(obj)
                     yield obj
 
 
 @implementer(ICommand)
 class BaseCommand:
 
-    def __init__(self):
-        self.subcommands: Dict[str, BaseCommand] = {}
-        for cmd in iter_subcommands(BaseCommand):
-            cmdname = cmd.__module__.split('.')[-1]
-            self.subcommands[cmdname] = cmd()
+    def __init__(self, parser: ArgumentParser):
+        # commands_dict contains a dictionary from the command name to the class that implements it
+        self.commands_dict: Dict[str, BaseCommand] = {}
 
-    @classmethod
-    def instantiate(cls, parser: ArgumentParser):
-        obj = cls()
-        obj.add_options(parser)
-        return obj
+        # populating the dict
+        for cmd in populate_commands(BaseCommand):
+            command_name = cmd.__module__.split('.')[-1]
+            self.commands_dict[command_name] = cmd()
 
-    def add_options(self, parser: ArgumentParser) -> None:
-        sub_parsers = parser.add_subparsers(dest='command')
-        for name, subcmd in self.subcommands.items():
-            subcmd_parser = sub_parsers.add_parser(name)
-            subcmd.add_options(subcmd_parser)
+        # add options to parser
+        self.add_arguments(parser)
 
-    def run(self, args: Namespace):
+    def add_arguments(self, parser: ArgumentParser) -> None:
+
+        # add all the commands
+        for name, subcommand in self.commands_dict.items():
+            subcommand_parser = parser.add_subparsers(dest='command').add_parser(name)
+            # call add_options of the specific command class
+            subcommand.add_arguments(subcommand_parser)
+
+    def run_command(self, args: Namespace):
+        # if command is valid, run the run_command function of the specific class
         if args.command:
-            self.subcommands[args.command].run(args)
+            self.commands_dict[args.command].run_command(args)

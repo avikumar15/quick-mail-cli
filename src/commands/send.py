@@ -1,3 +1,4 @@
+import inspect
 from argparse import ArgumentParser, Namespace
 from zope.interface import implementer
 
@@ -6,8 +7,7 @@ from src.commands import ICommand
 
 @implementer(ICommand)
 class SendCommand:
-
-    def add_options(self, parser: ArgumentParser) -> None:
+    def add_arguments(self, parser: ArgumentParser) -> None:
         parser.add_argument('--receiver', '-r',
                             required=True,
                             help="Receiver's email address, eg. 'avithewinner1508@gmail.com'")
@@ -19,8 +19,6 @@ class SendCommand:
                             help="Email's body file path, eg. '~/Desktop/body.txt' ")
         parser.add_argument('--attachment', '-a',
                             help="Email's attachment path, eg. '~/Desktop/106118017_CA_Endsem.pdf' ")
-        parser.add_argument('--help', '-h',
-                            help="Get help")
 
-    def run(self, args: Namespace):
-        print(args.reciever, args.subject, args.body, args.attachment)
+    def run_command(self, args: Namespace):
+        print(args.receiver, args.subject, args.body, args.attachment)
