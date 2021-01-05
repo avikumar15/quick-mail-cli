@@ -51,9 +51,10 @@ class BaseCommand:
 
     def add_arguments(self, parser: ArgumentParser) -> None:
 
+        sub_parser = parser.add_subparsers(dest='command')
         # add all the commands
         for name, subcommand in self.commands_dict.items():
-            subcommand_parser = parser.add_subparsers(dest='command').add_parser(name)
+            subcommand_parser = sub_parser.add_parser(name)
             # call add_options of the specific command class
             subcommand.add_arguments(subcommand_parser)
 
