@@ -1,7 +1,5 @@
-import inspect
 from argparse import ArgumentParser, Namespace
 from zope.interface import implementer
-
 from src.commands import ICommand
 
 
