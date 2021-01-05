@@ -1,11 +1,8 @@
 from __future__ import print_function
 
-import base64
 import pickle
 import os.path
-from email.mime.text import MIMEText
 
-from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
@@ -13,7 +10,8 @@ from argparse import ArgumentParser, Namespace
 from zope.interface import implementer
 from src.commands import ICommand
 
-SCOPES = ['https://www.googleapis.com/auth/gmail.send']
+SCOPES = ['https://www.googleapis.com/auth/gmail.send',
+          'https://www.googleapis.com/auth/gmail.readonly']
 
 
 @implementer(ICommand)
@@ -22,7 +20,6 @@ class InitCommand:
         pass
 
     def run_command(self, args: Namespace):
-
         creds = None
         try:
             if os.path.exists('token.pickle'):
