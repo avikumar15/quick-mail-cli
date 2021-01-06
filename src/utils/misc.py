@@ -1,6 +1,8 @@
 from importlib import import_module
 from pkgutil import iter_modules
 
+heavy_tick = '\u2705'
+heavy_exclamation = '\u2757'
 
 def walk_modules(path):
     """Loads a module and all its submodules from the given module path and
