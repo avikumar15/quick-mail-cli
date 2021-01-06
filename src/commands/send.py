@@ -4,6 +4,7 @@ import mimetypes
 import os
 import pickle
 import base64
+from email.mime.application import MIMEApplication
 from email.mime.audio import MIMEAudio
 from email.mime.base import MIMEBase
 from email.mime.image import MIMEImage
@@ -61,6 +62,7 @@ class SendCommand:
             message = MIMEText(body)
 
             message['to'] = receiver_email
+            message['from'] = senders_email
             message['subject'] = subject
 
         else:
@@ -90,9 +92,9 @@ class SendCommand:
                 fp.close()
             else:
                 fp = open(attachment, 'rb')
-                msg = MIMEBase(main_type, sub_type)
-                msg.set_payload(fp.read())
+                msg = MIMEApplication(fp.read(), _subtype=sub_type)
                 fp.close()
+
             filename = os.path.basename(attachment)
             msg.add_header('Content-Disposition', 'attachment', filename=filename)
             message.attach(msg)
