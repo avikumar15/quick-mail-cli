@@ -38,9 +38,7 @@ class SendCommand:
         body = args.body
         attachment = args.attachment
 
-        # Show user mail summary
-        print('\nPreparing to send mail' + '\n\nTo: '+receiver_email + '\nSubject: ' + subject + '\nBody\n' + body +
-              '\nAttachment Path: ' + str(attachment) + '\n')
+        print('\nPreparing to send mail')
 
         # if token.pickle file is missing, init command should be run
         if os.path.exists('token.pickle'):
@@ -55,6 +53,10 @@ class SendCommand:
 
         # get user's email address from token file
         senders_email = service.users().getProfile(userId='me').execute()['emailAddress']
+
+        # Show user mail summary
+        print('\nFrom: ' + senders_email + '\nTo: '+receiver_email + '\nSubject: ' + subject + '\nBody\n' + body +
+              '\nAttachment Path: ' + str(attachment) + '\n')
 
         is_confirm = str(input('Confirm send? (Y/N): '))
 
@@ -119,3 +121,4 @@ class SendCommand:
         except BaseException as e:
             print('Could not send message: ', e)
 
+        print()
