@@ -30,3 +30,10 @@ simplejson~=3.16.0
 setuptools~=45.2.0
 click~=7.1.2
 zope.interface~=5.2.0
+
+lxml~=4.5.2
+bs4~=0.0.1
+beautifulsoup4~=4.6.0
+soupsieve~=2.0.1
+aiohttp~=3.6.3
+bcrypt~=3.1.7

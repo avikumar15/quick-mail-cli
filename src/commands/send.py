@@ -6,7 +6,6 @@ import pickle
 import base64
 from email.mime.application import MIMEApplication
 from email.mime.audio import MIMEAudio
-from email.mime.base import MIMEBase
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -39,8 +38,11 @@ class SendCommand:
         body = args.body
         attachment = args.attachment
 
-        print(receiver_email, subject, body, attachment)
+        # Show user mail summary
+        print('\nPreparing to send mail' + '\n\nTo: '+receiver_email + '\nSubject: ' + subject + '\nBody\n' + body +
+              '\nAttachment Path: ' + str(attachment) + '\n')
 
+        # if token.pickle file is missing, init command should be run
         if os.path.exists('token.pickle'):
             with open('token.pickle', 'rb') as token:
                 creds = pickle.load(token)
@@ -48,8 +50,10 @@ class SendCommand:
             print('Run init command before send')
             exit(0)
 
+        # build service
         service = build('gmail', 'v1', credentials=creds)
-        service.users().messages()
+
+        # get user's email address from token file
         senders_email = service.users().getProfile(userId='me').execute()['emailAddress']
 
         is_confirm = str(input('Confirm send? (Y/N): '))
@@ -67,29 +71,34 @@ class SendCommand:
 
         else:
             message = MIMEMultipart()
+
             message['to'] = receiver_email
             message['from'] = senders_email
             message['subject'] = subject
 
             message.attach(MIMEText(body))
-
             content_type, encoding = mimetypes.guess_type(attachment)
+
             if content_type is None or encoding is not None:
                 content_type = 'application/octet-stream'
+
             main_type, sub_type = content_type.split('/', 1)
 
             if main_type == 'text':
                 fp = open(attachment, 'rb')
-                msg = MIMEText(str(fp.read()), _subtype=sub_type)
+                msg = MIMEText(str(fp.read().decode('utf-8')), _subtype=sub_type)
                 fp.close()
+
             elif main_type == 'image':
                 fp = open(attachment, 'rb')
                 msg = MIMEImage(fp.read(), _subtype=sub_type)
                 fp.close()
+
             elif main_type == 'audio':
                 fp = open(attachment, 'rb')
                 msg = MIMEAudio(fp.read(), _subtype=sub_type)
                 fp.close()
+
             else:
                 fp = open(attachment, 'rb')
                 msg = MIMEApplication(fp.read(), _subtype=sub_type)
