@@ -30,10 +30,10 @@ class SendCommand:
                             required=True,
                             help="Email's subject, eg. '-sub \"CA Endsem Submission'\"")
         parser.add_argument('--body', '-b',
-                            help="Email's body file path, eg. '-b ~/Desktop/body.txt' or '-b \"Message Body Comes "
-                                 "Here\"' ")
+                            help="Email's body, eg. '-b \"Message Body Comes Here\"'")
         parser.add_argument('--attachment', '-a',
                             help="Email's attachment path, eg. '~/Desktop/CA_Endsem.pdf' ")
+        parser.add_argument('--lessgo', '-l', action='store_true')
 
     def run_command(self, args: Namespace):
 
@@ -54,7 +54,7 @@ class SendCommand:
 
         if not body:
             body_file_name = '/' + datetime.now().strftime("%d_%m_%Y_%H_%M_%S") + '.txt'
-            file_path = quick_mail_dir+body_file_name
+            file_path = quick_mail_dir + body_file_name
 
             f = open(file_path, "x")
             # print(file_path)
@@ -78,14 +78,14 @@ class SendCommand:
         senders_email = service.users().getProfile(userId='me').execute()['emailAddress']
 
         # Show user mail summary
-        print('\nFrom: ' + senders_email + '\nTo: '+receiver_email + '\nSubject: ' + subject + '\nBody\n' + body +
+        print('\nFrom: ' + senders_email + '\nTo: ' + receiver_email + '\nSubject: ' + subject + '\nBody\n' + body +
               '\nAttachment Path: ' + (str(attachment) if attachment else 'No attachments') + '\n')
 
-        is_confirm = str(input('Confirm send? (Y/N): '))
-
-        if is_confirm.lower() != 'y':
-            print('Confirmation denied, exiting... ' + smiling_face + smiling_face + smiling_face)
-            exit(0)
+        if not args.lessgo:
+            is_confirm = str(input('Confirm send? (Y/N): '))
+            if is_confirm.lower() != 'y':
+                print('Confirmation denied, exiting... ' + smiling_face + smiling_face + smiling_face)
+                exit(0)
 
         if not attachment:
             message = MIMEText(body)
