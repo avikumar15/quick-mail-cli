@@ -20,7 +20,7 @@ SCOPES = ['https://www.googleapis.com/auth/gmail.send',
 class InitCommand:
     def add_arguments(self, parser: ArgumentParser) -> None:
         parser.add_argument('filepath',
-                            help="Path to credentials.json file")
+                            help="Path to credentials.json")
 
     def check_creds_json(self, path):
 
