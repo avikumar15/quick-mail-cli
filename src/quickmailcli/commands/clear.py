@@ -10,7 +10,7 @@ from src.quickmailcli.utils.misc import quick_mail_dir, heavy_tick
 @implementer(ICommand)
 class ClearCommand:
     def add_arguments(self, parser: ArgumentParser) -> None:
-        parser.add_argument('--fuckit', '-ffs',
+        parser.add_argument('--justdoit', '-j',
                             action='store_true',
                             help='Clear storage completely')
 
