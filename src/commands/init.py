@@ -10,7 +10,7 @@ from google.auth.transport.requests import Request
 from argparse import ArgumentParser, Namespace
 from zope.interface import implementer
 from src.commands import ICommand
-from src.utils.misc import heavy_tick, heavy_exclamation
+from src.utils.misc import heavy_tick, heavy_exclamation, quick_mail_dir, quick_mail_creds_file, quick_mail_token_file
 
 SCOPES = ['https://www.googleapis.com/auth/gmail.send',
           'https://www.googleapis.com/auth/gmail.readonly']
@@ -23,9 +23,6 @@ class InitCommand:
                             help="Path to credentials.json")
 
     def check_creds_json(self, path):
-
-        quick_mail_dir = os.path.expanduser('~/.quickmail')
-        quick_mail_creds_file = os.path.expanduser('~/.quickmail/credentials.json')
 
         if os.path.exists(quick_mail_dir):
             if os.path.exists(quick_mail_creds_file):
@@ -44,26 +41,23 @@ class InitCommand:
         self.check_creds_json(args.filepath)
         creds = None
 
-        token_path = os.path.expanduser('~/.quickmail/token.pickle')
-        creds_path = os.path.expanduser('~/.quickmail/credentials.json')
-
         try:
-            if os.path.exists(token_path):
-                with open(token_path, 'rb') as token:
+            if os.path.exists(quick_mail_token_file):
+                with open(quick_mail_token_file, 'rb') as token:
                     creds = pickle.load(token)
 
             if not creds:
                 flow = InstalledAppFlow.from_client_secrets_file(
-                    creds_path, SCOPES)
+                    quick_mail_creds_file, SCOPES)
                 creds = flow.run_local_server(port=0)
 
-                with open(token_path, 'wb') as token:
+                with open(quick_mail_token_file, 'wb') as token:
                     pickle.dump(creds, token)
                 print('Generated token ' + heavy_tick)
 
             elif not creds.valid or creds.expired:
                 creds.refresh(Request())
-                with open(token_path, 'wb') as token:
+                with open(quick_mail_token_file, 'wb') as token:
                     pickle.dump(creds, token)
                 print('Initialised token ' + heavy_tick)
 
@@ -72,15 +66,15 @@ class InitCommand:
 
         except pickle.UnpicklingError:
 
-            if os.path.exists(token_path):
-                os.remove(token_path)
+            if os.path.exists(quick_mail_token_file):
+                os.remove(quick_mail_token_file)
 
             print('Token file corrupted ' + heavy_exclamation + ' regenerating...')
             flow = InstalledAppFlow.from_client_secrets_file(
-                creds_path, SCOPES)
+                quick_mail_creds_file, SCOPES)
             creds = flow.run_local_server(port=0)
 
-            with open(token_path, 'wb') as token:
+            with open(quick_mail_token_file, 'wb') as token:
                 pickle.dump(creds, token)
 
             print('Initialised token ' + heavy_tick)
