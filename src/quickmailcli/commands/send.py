@@ -13,8 +13,8 @@ from googleapiclient.discovery import build
 
 from argparse import ArgumentParser, Namespace
 from zope.interface import implementer
-from src.commands import ICommand
-from src.utils.misc import quick_mail_dir, quick_mail_token_file, wink_face, grinning_face, heavy_tick, smiling_face, \
+from src.quickmailcli.commands import ICommand
+from src.quickmailcli.utils.misc import quick_mail_dir, quick_mail_token_file, grinning_face, heavy_tick, smiling_face, \
     party_popper_tada, heavy_exclamation
 from datetime import datetime
 import subprocess

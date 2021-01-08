@@ -5,9 +5,8 @@ from typing import Dict
 
 from zope.interface import Interface, implementer
 from zope.interface.exceptions import Invalid, MultipleInvalid
-from zope.interface.verify import verifyClass
 
-from src.utils.misc import walk_modules
+from src.quickmailcli.utils.misc import walk_modules, command_dir_path
 
 
 class ICommand(Interface):
@@ -22,7 +21,7 @@ class ICommand(Interface):
 def populate_commands(cls):
 
     # finding all files inside src.commands, and returning files which have classes inherited from ICommand
-    for module in walk_modules('src.commands'):
+    for module in walk_modules(command_dir_path):
         for obj in vars(module).values():
             with suppress(Invalid, MultipleInvalid):
                 if (

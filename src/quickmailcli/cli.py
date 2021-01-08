@@ -1,6 +1,6 @@
 import argparse
 
-from src.commands import BaseCommand
+from src.quickmailcli.commands import BaseCommand
 
 cli_description = 'A command line interface to send a quick mail'
 

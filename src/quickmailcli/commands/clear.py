@@ -3,8 +3,8 @@ from __future__ import print_function
 import os
 from argparse import ArgumentParser, Namespace
 from zope.interface import implementer
-from src.commands import ICommand
-from src.utils.misc import quick_mail_dir, heavy_tick
+from src.quickmailcli.commands import ICommand
+from src.quickmailcli.utils.misc import quick_mail_dir, heavy_tick
 
 
 @implementer(ICommand)
