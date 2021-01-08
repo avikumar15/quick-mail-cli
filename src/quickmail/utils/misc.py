@@ -5,7 +5,7 @@ from pkgutil import iter_modules
 quick_mail_dir = os.path.expanduser('~/.quickmail')
 quick_mail_creds_file = os.path.expanduser('~/.quickmail/credentials.json')
 quick_mail_token_file = os.path.expanduser('~/.quickmail/token.pickle')
-command_dir_path = 'src.quickmailcli.commands'
+command_dir_path = 'src.quickmail.commands'
 
 # Emojis
 heavy_tick = '\u2705'

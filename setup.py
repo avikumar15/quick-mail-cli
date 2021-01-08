@@ -19,7 +19,7 @@ setup(
     author_email='avikumar.singh1508@gmail.com',
     python_requires='>=3.6',
     package_dir={'': 'src'},
-    entry_points={'console_scripts': ['quickmailcli=src.quickmailcli.cli:execute']},
+    entry_points={'console_scripts': ['quickmail=src.quickmail.cli:execute']},
     url='https://github.com/avikumar15/quick-email-cli',
     keywords=['CLI', 'gmail', 'email'],
     platforms='any',

@@ -9,8 +9,8 @@ from google.auth.transport.requests import Request
 
 from argparse import ArgumentParser, Namespace
 from zope.interface import implementer
-from src.quickmailcli.commands import ICommand
-from src.quickmailcli.utils.misc import heavy_tick, heavy_exclamation, quick_mail_dir, quick_mail_creds_file, quick_mail_token_file
+from src.quickmail.commands import ICommand
+from src.quickmail.utils.misc import heavy_tick, heavy_exclamation, quick_mail_dir, quick_mail_creds_file, quick_mail_token_file
 
 SCOPES = ['https://www.googleapis.com/auth/gmail.send',
           'https://www.googleapis.com/auth/gmail.readonly']
@@ -21,6 +21,9 @@ class InitCommand:
     def add_arguments(self, parser: ArgumentParser) -> None:
         parser.add_argument('filepath',
                             help="Path to credentials.json")
+
+        parser.description = 'Use the init command to initialise the token and to set up your gmail account for ' \
+                             'hassle-free mail deliveries'
 
     def check_creds_json(self, path):
 
@@ -78,3 +81,6 @@ class InitCommand:
                 pickle.dump(creds, token)
 
             print('Initialised token ' + heavy_tick)
+
+    def get_desc(self) -> str:
+        return 'initialise token and set your email id'

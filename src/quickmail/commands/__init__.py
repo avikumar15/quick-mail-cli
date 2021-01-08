@@ -6,7 +6,7 @@ from typing import Dict
 from zope.interface import Interface, implementer
 from zope.interface.exceptions import Invalid, MultipleInvalid
 
-from src.quickmailcli.utils.misc import walk_modules, command_dir_path
+from src.quickmail.utils.misc import walk_modules, command_dir_path
 
 
 class ICommand(Interface):
@@ -15,6 +15,9 @@ class ICommand(Interface):
         pass
 
     def run_command(args: Namespace) -> None:
+        pass
+
+    def get_desc(self) -> str:
         pass
 
 
@@ -53,7 +56,7 @@ class BaseCommand:
         sub_parser = parser.add_subparsers(dest='command')
         # add all the commands
         for name, subcommand in self.commands_dict.items():
-            subcommand_parser = sub_parser.add_parser(name)
+            subcommand_parser = sub_parser.add_parser(name, help=subcommand.get_desc())
             # call add_options of the specific command class
             subcommand.add_arguments(subcommand_parser)
 

@@ -13,8 +13,8 @@ from googleapiclient.discovery import build
 
 from argparse import ArgumentParser, Namespace
 from zope.interface import implementer
-from src.quickmailcli.commands import ICommand
-from src.quickmailcli.utils.misc import quick_mail_dir, quick_mail_token_file, grinning_face, heavy_tick, smiling_face, \
+from src.quickmail.commands import ICommand
+from src.quickmail.utils.misc import quick_mail_dir, quick_mail_token_file, grinning_face, heavy_tick, smiling_face, \
     party_popper_tada, heavy_exclamation
 from datetime import datetime
 import subprocess
@@ -23,19 +23,27 @@ import subprocess
 @implementer(ICommand)
 class SendCommand:
     def add_arguments(self, parser: ArgumentParser) -> None:
-        parser.add_argument('--receiver', '-r',
+        parser.add_argument('-r',
+                            '--receiver',
                             required=True,
-                            help="Receiver's email address, eg. '-r \"avithewinner1508@gmail.com\"' ")
-        parser.add_argument('--subject', '-sub',
+                            help="receiver's email address, eg. '-r \"avithewinner1508@gmail.com\"' ")
+        parser.add_argument('-sub',
+                            '--subject',
                             required=True,
-                            help="Email's subject, eg. '-sub \"CA Endsem Submission'\"")
-        parser.add_argument('--body', '-b',
-                            help="Email's body, eg. '-b \"Message Body Comes Here\"'")
-        parser.add_argument('--attachment', '-a',
-                            help="Email's attachment path, eg. '~/Desktop/CA_Endsem.pdf' ")
-        parser.add_argument('--lessgo', '-l',
+                            help="email's subject, eg. '-sub \"CA Endsem Submission'\"")
+        parser.add_argument('-b',
+                            '--body',
+                            help="email's body, eg. '-b \"Message Body Comes Here\"'")
+        parser.add_argument('-a',
+                            '--attachment',
+                            help="email's attachment path, eg. '~/Desktop/CA_Endsem.pdf' ")
+        parser.add_argument('-l',
+                            '--lessgo',
                             action='store_true',
-                            help='Skip confirmation before sending mail')
+                            help='skip confirmation before sending mail')
+
+        parser.description = 'Use the send command to send mail. Body can be passed as an argument, or typed in a ' \
+                             'nano shell. Use optional --lessgo command for sending mail without confirmation'
 
     def run_command(self, args: Namespace):
 
@@ -147,3 +155,6 @@ class SendCommand:
             print('Could not send message: ', e)
 
         print()
+
+    def get_desc(self) -> str:
+        return 'send the mail'
