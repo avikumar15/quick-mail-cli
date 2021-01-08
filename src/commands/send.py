@@ -15,7 +15,7 @@ from argparse import ArgumentParser, Namespace
 from zope.interface import implementer
 from src.commands import ICommand
 from src.utils.misc import quick_mail_dir, quick_mail_token_file, wink_face, grinning_face, heavy_tick, smiling_face, \
-    party_popper_tada
+    party_popper_tada, heavy_exclamation
 from datetime import datetime
 import subprocess
 
@@ -33,7 +33,9 @@ class SendCommand:
                             help="Email's body, eg. '-b \"Message Body Comes Here\"'")
         parser.add_argument('--attachment', '-a',
                             help="Email's attachment path, eg. '~/Desktop/CA_Endsem.pdf' ")
-        parser.add_argument('--lessgo', '-l', action='store_true')
+        parser.add_argument('--lessgo', '-l',
+                            action='store_true',
+                            help='Skip confirmation before sending mail')
 
     def run_command(self, args: Namespace):
 
@@ -44,7 +46,7 @@ class SendCommand:
             with open(quick_mail_token_file, 'rb') as token:
                 creds = pickle.load(token)
         else:
-            print('Run init command before send')
+            print('Could not find credentials, please run init command first ' + heavy_exclamation + heavy_exclamation)
             exit(0)
 
         receiver_email = args.receiver
