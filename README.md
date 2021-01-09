@@ -1,14 +1,12 @@
-## Quick Email CLI
+# Quick Email CLI
 
 A command line interface to send mail without any hassle.
 
-### Why this tool?
+## Why this tool?
 
 Sending last minute mails using conventional tools can get annoying and tiresome. This CLI helps in such situation since it makes sending mail hassle-free and very quick. Use this tool to send mails quickly without leaving your terminal.
 
--------------------------
-
-### Installation
+## Installation
 
 #### Debian
 
@@ -30,15 +28,14 @@ Check installation by running
 $ quickmail --version
 ```
 
--------------------------
-
-### Usage
+## Usage
 
 
 To use this:
 
 	$ quickmail --help
 
+<h3></h3>
 
 ```
 usage: quickmail [-h] [-v] {clear,init,send} ...
@@ -70,6 +67,8 @@ Now you are all set. Use the send command to send mail.
 
 	$ quickmail send --help
 
+<h3></h3>
+
 ```
 usage: quickmail send [-h] -r RECEIVER -sub SUBJECT [-b BODY]
                       [-a ATTACHMENT] [-l]
@@ -100,7 +99,9 @@ To clear the cli storage, use the clear command. Use --justdoit (shorthand -j) t
 
 
 	$ quickmail clear --help
-	
+
+<h3></h3>
+
 ```
 usage: quickmail clear [-h] [-j]
 
@@ -113,13 +114,11 @@ optional arguments:
   -j, --justdoit  clear storage including the credentials and token
 ```
 
--------------------------
-
-Following is a recording of the terminal session which records the usage of `quickmail`. \
+Following is a recording of the terminal session which records the usage of `quickmail`. 
+<h3></h3>
 
 [![asciicast](https://asciinema.org/a/5B8bdkDSp6rXjqo6feVbRSrMw.svg)](https://asciinema.org/a/5B8bdkDSp6rXjqo6feVbRSrMw)
 
--------------------------
 
 ### Improvements and Bugs
 
