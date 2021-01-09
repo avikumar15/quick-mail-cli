@@ -4,7 +4,9 @@ A command line interface to send mail without any hassle.
 
 ### Why this tool?
 
-Quite often there is a need to send a mail urgently, and every minute counts. This utility helps in such a situation since it makes sending mail hassle-free and very quick. The need for such a tool has increased ever since the online semester has started.
+Sending last minute mails using conventional tools can get annoying and tiresome. This CLI helps in such situation since it makes sending mail hassle-free and very quick. Use this tool to send mails quickly without leaving your terminal.
+
+-------------------------
 
 ### Installation
 
@@ -28,6 +30,8 @@ Check installation by running
 $ quickmail --version
 ```
 
+-------------------------
+
 ### Usage
 
 
@@ -43,7 +47,8 @@ A command line interface to send mail without any hassle
 
 positional arguments:
   {clear,init,send}
-    clear            clear the body of message from local or even the token if --justdoit argument is added
+    clear            clear the body of message from local or even the
+                     token if --justdoit argument is added
     init             initialise token and set your email id
     send             send the mail
 
@@ -66,19 +71,26 @@ Now you are all set. Use the send command to send mail.
 	$ quickmail send --help
 
 ```
-usage: quickmail send [-h] -r RECEIVER -sub SUBJECT [-b BODY] [-a ATTACHMENT] [-l]
+usage: quickmail send [-h] -r RECEIVER -sub SUBJECT [-b BODY]
+                      [-a ATTACHMENT] [-l]
 
-Use the send command to send mail. Body can be passed as an argument, or typed in a nano shell. Use optional --lessgo command for sending mail without confirmation
+Use the send command to send mail. Body can be passed as an argument,
+or typed in a nano shell. Use optional --lessgo command for sending
+mail without confirmation
 
 optional arguments:
   -h, --help            show this help message and exit
   -r RECEIVER, --receiver RECEIVER
-                        receiver's email address, eg. '-r "avithewinner1508@gmail.com"'
+                        receiver's email address, eg. '-r
+                        "avithewinner1508@gmail.com"'
   -sub SUBJECT, --subject SUBJECT
-                        email's subject, eg. '-sub "CA Endsem Submission'"
-  -b BODY, --body BODY  email's body, eg. '-b "Message Body Comes Here"'
+                        email's subject, eg. '-sub "CA Endsem
+                        Submission'"
+  -b BODY, --body BODY  email's body, eg. '-b "Message Body Comes
+                        Here"'
   -a ATTACHMENT, --attachment ATTACHMENT
-                        email's attachment path, eg. '~/Desktop/CA_Endsem.pdf'
+                        email's attachment path, eg.
+                        '~/Desktop/CA_Endsem.pdf'
   -l, --lessgo          skip confirmation before sending mail
 ```
 
@@ -92,13 +104,22 @@ To clear the cli storage, use the clear command. Use --justdoit (shorthand -j) t
 ```
 usage: quickmail clear [-h] [-j]
 
-Use the clear command to clear all email body that are saved in your home directories. Additionally, pass --justdoit to remove the credential files as well
+Use the clear command to clear all email body that are saved in your
+home directories. Additionally, pass --justdoit to remove the
+credential files as well
 
 optional arguments:
   -h, --help      show this help message and exit
   -j, --justdoit  clear storage including the credentials and token
 ```
 
+-------------------------
+
+Following is a recording of the terminal session which records the usage of `quickmail`. \
+
+[![asciicast](https://asciinema.org/a/5B8bdkDSp6rXjqo6feVbRSrMw.svg)](https://asciinema.org/a/5B8bdkDSp6rXjqo6feVbRSrMw)
+
+-------------------------
 
 ### Improvements and Bugs
 
