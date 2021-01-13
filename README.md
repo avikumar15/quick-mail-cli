@@ -56,7 +56,7 @@ optional arguments:
 
 
 Create your [OAuth client ID](https://console.developers.google.com/apis/credentials/) and download the credentials.json file.
-Then run the init command to authenticate gmail, and generate token.
+Then run the init command to authenticate gmail, and generate token. This command is required to be run only once.
 
 ```
 $ quickmail init <path/to/credentials.json>
@@ -95,7 +95,7 @@ optional arguments:
 
 Body and attachments are optional arguments. Body can be either passed as an argument otherwise it can also be typed in the nano shell. Use the --lessgo (shorthand -l) to skip confirmation of mail, for quicker mail deliveries.
 
-To clear the cli storage, use the clear command. Use --justdoit (shorthand -j) to even remove the credential and token files from project directory.
+To clear the cli storage, use the clear command. Use --justdoit (shorthand -j) to even remove the credential and token files from project directory, this extra argument would allow you to change your primary email address.
 
 
 	$ quickmail clear --help
