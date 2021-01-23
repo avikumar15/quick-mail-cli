@@ -152,7 +152,7 @@ For subsequent usage, just send command is enough.
 
 <h3></h3>
 
-[![asciicast](https://asciinema.org/a/K2YqrCfGMTiLtnJwOiJTa8O6n.svg)](https://asciinema.org/a/K2YqrCfGMTiLtnJwOiJTa8O6n)
+[![asciicast](https://asciinema.org/a/XozAmmZXCOaGcpAJGEYEH93Ia.svg)](https://asciinema.org/a/XozAmmZXCOaGcpAJGEYEH93Ia)
 
 ### Improvements and Bugs
 
