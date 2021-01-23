@@ -5,6 +5,7 @@ from pkgutil import iter_modules
 quick_mail_dir = os.path.expanduser('~/.quickmail')
 quick_mail_creds_file = os.path.expanduser('~/.quickmail/credentials.json')
 quick_mail_token_file = os.path.expanduser('~/.quickmail/token.pickle')
+quick_mail_template_dir = os.path.expanduser('~/.quickmail/templates/')
 command_dir_path = 'src.quickmail.commands'
 
 # Emojis
