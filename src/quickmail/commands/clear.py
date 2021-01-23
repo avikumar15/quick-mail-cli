@@ -22,7 +22,7 @@ class ClearCommand:
             print('Storage already is empty ' + heavy_tick)
             return
 
-        if args.fuckit:
+        if args.justdoit:
             for file in os.listdir(quick_mail_dir):
                 os.remove(quick_mail_dir + '/' + file)
         else:
