@@ -56,7 +56,7 @@ class ClearCommand:
 
             file_path = quick_mail_template_dir + args.templatename + '.txt'
 
-            if not os.path.exists(quick_mail_template_dir + args.templatename + '.txt'):
+            if not os.path.exists(file_path):
                 print('Template doesn\'t exists, created new one at ' + file_path + ' ' + heavy_tick)
                 f = open(file_path, "x")
                 f.close()

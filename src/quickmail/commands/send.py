@@ -15,7 +15,7 @@ from argparse import ArgumentParser, Namespace
 from zope.interface import implementer
 from src.quickmail.commands import ICommand
 from src.quickmail.utils.misc import quick_mail_dir, quick_mail_token_file, grinning_face, heavy_tick, smiling_face, \
-    party_popper_tada, heavy_exclamation
+    party_popper_tada, heavy_exclamation, quick_mail_template_dir
 from datetime import datetime
 import subprocess
 
@@ -30,7 +30,10 @@ class SendCommand:
         parser.add_argument('-sub',
                             '--subject',
                             required=True,
-                            help="email's subject, eg. '-sub \"CA Endsem Submission'\"")
+                            help="email's subject, eg. '-sub \"CA Endsem Submission\"'")
+        parser.add_argument('-t',
+                            '--template',
+                            help="template of email body, eg. '-t=\"assignment_template\"' ")
         parser.add_argument('-b',
                             '--body',
                             help="email's body, eg. '-b \"Message Body Comes Here\"'")
@@ -61,8 +64,9 @@ class SendCommand:
         subject = args.subject
         body = args.body
         attachment = args.attachment
+        template = args.template
 
-        if not body:
+        if not body and not template:
             body_file_name = '/' + datetime.now().strftime("%d_%m_%Y_%H_%M_%S") + '.txt'
             file_path = quick_mail_dir + body_file_name
 
@@ -70,6 +74,32 @@ class SendCommand:
             # print(file_path)
             subprocess.call(['nano', file_path])
             f.close()
+            f = open(file_path, "r")
+            body = f.read()
+            # print(body)
+            print('\nAdded body of the mail ' + heavy_tick)
+            f.close()
+
+        elif not body:
+
+            template_path = quick_mail_template_dir + template + '.txt'
+
+            if not os.path.exists(template_path):
+                print('Template doesn\'t exists, exiting...')
+                exit(0)
+
+            f = open(template_path, "r")
+            template_txt = f.read()
+            f.close()
+
+            body_file_name = '/' + datetime.now().strftime("%d_%m_%Y_%H_%M_%S") + '.txt'
+            file_path = quick_mail_dir + body_file_name
+
+            f = open(file_path, "a")
+            f.write(template_txt)
+            f.close()
+
+            subprocess.call(['nano', file_path])
             f = open(file_path, "r")
             body = f.read()
             # print(body)
