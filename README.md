@@ -1,3 +1,4 @@
+
 # Quick Email CLI
 
 A command line interface to send mail without any hassle.
@@ -38,16 +39,17 @@ To use this:
 <h3></h3>
 
 ```
-usage: quickmail [-h] [-v] {clear,init,send} ...
+usage: quickmail [-h] [-v] {clear,init,send,template} ...
 
 A command line interface to send mail without any hassle
 
 positional arguments:
-  {clear,init,send}
+  {clear,init,send,template}
     clear            clear the body of message from local or even the
                      token if --justdoit argument is added
     init             initialise token and set your email id
     send             send the mail
+    template         manage templates of mail body
 
 optional arguments:
   -h, --help         show this help message and exit
@@ -56,6 +58,8 @@ optional arguments:
 
 
 Create your [OAuth client ID](https://console.developers.google.com/apis/credentials/) and download the credentials.json file.
+<h2></h2>
+
 Then run the init command to authenticate gmail, and generate token. This command is required to be run only once.
 
 ```
@@ -70,8 +74,8 @@ Now you are all set. Use the send command to send mail.
 <h3></h3>
 
 ```
-usage: quickmail send [-h] -r RECEIVER -sub SUBJECT [-b BODY]
-                      [-a ATTACHMENT] [-l]
+usage: quickmail send [-h] -r RECEIVER -sub SUBJECT [-t TEMPLATE] 
+                      [-b BODY] [-a ATTACHMENT] [-l]
 
 Use the send command to send mail. Body can be passed as an argument,
 or typed in a nano shell. Use optional --lessgo command for sending
@@ -84,7 +88,10 @@ optional arguments:
                         "avithewinner1508@gmail.com"'
   -sub SUBJECT, --subject SUBJECT
                         email's subject, eg. '-sub "CA Endsem
-                        Submission'"
+                        Submission"'
+  -t TEMPLATE, --template TEMPLATE
+						template of email body, eg.
+                        '-t="assignment_template"'
   -b BODY, --body BODY  email's body, eg. '-b "Message Body Comes
                         Here"'
   -a ATTACHMENT, --attachment ATTACHMENT
@@ -93,7 +100,7 @@ optional arguments:
   -l, --lessgo          skip confirmation before sending mail
 ```
 
-Body and attachments are optional arguments. Body can be either passed as an argument otherwise it can also be typed in the nano shell. Use the --lessgo (shorthand -l) to skip confirmation of mail, for quicker mail deliveries.
+Body and attachments are optional arguments. Body can be either passed as an argument otherwise it can also be typed in the nano shell (Use -t argument to use a template body). Use the --lessgo (shorthand -l) to skip confirmation of mail, for quicker mail deliveries.
 
 To clear the cli storage, use the clear command. Use --justdoit (shorthand -j) to even remove the credential and token files from project directory, this extra argument would allow you to change your primary email address.
 
@@ -114,11 +121,38 @@ optional arguments:
   -j, --justdoit  clear storage including the credentials and token
 ```
 
-Following is a recording of the terminal session which records the usage of `quickmail`. 
+To manage templates use the template command.
+
+	$ quickmail template --help
+	
+<h3></h3>
+
+```
+usage: quickmail template [-h] {add,listall,edit} ...
+
+manage mail templates
+
+positional arguments:
+  {add,listall,edit}
+    add               add a new template
+    listall           list all templates
+    edit              edit a particular template
+
+optional arguments:
+  -h, --help          show this help message and exit
+```
+
+Following is a recording of the terminal session which records the usage of `quickmail` from init command till send command. 
+
 <h3></h3>
 
 [![asciicast](https://asciinema.org/a/5B8bdkDSp6rXjqo6feVbRSrMw.svg)](https://asciinema.org/a/5B8bdkDSp6rXjqo6feVbRSrMw)
 
+For subsequent usage, just send command is enough.
+
+<h3></h3>
+
+[![asciicast](https://asciinema.org/a/K2YqrCfGMTiLtnJwOiJTa8O6n.svg)](https://asciinema.org/a/K2YqrCfGMTiLtnJwOiJTa8O6n)
 
 ### Improvements and Bugs
 
