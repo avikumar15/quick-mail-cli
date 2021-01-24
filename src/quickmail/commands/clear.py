@@ -4,7 +4,7 @@ import os
 from argparse import ArgumentParser, Namespace
 from zope.interface import implementer
 from src.quickmail.commands import ICommand
-from src.quickmail.utils.misc import quick_mail_dir, heavy_tick
+from src.quickmail.utils.misc import quick_mail_dir, heavy_tick, quick_mail_template_dir
 
 
 @implementer(ICommand)
@@ -29,6 +29,10 @@ class ClearCommand:
             saved_files = [file for file in os.listdir(quick_mail_dir) if file.endswith('.txt')]
             for file in saved_files:
                 os.remove(quick_mail_dir + '/' + file)
+
+        saved_files = [file for file in os.listdir(quick_mail_template_dir) if file.endswith('.txt')]
+        for file in saved_files:
+            os.remove(quick_mail_template_dir + file)
 
         print('Storage cleared ' + heavy_tick + heavy_tick)
 
