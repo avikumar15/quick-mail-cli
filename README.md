@@ -74,12 +74,12 @@ Now you are all set. Use the send command to send mail.
 <h3></h3>
 
 ```
-usage: quickmail send [-h] -r RECEIVER -sub SUBJECT [-t TEMPLATE] 
-                      [-b BODY] [-a ATTACHMENT] [-l]
+usage: quickmail send [-h] -r RECEIVER -sub SUBJECT [-t TEMPLATE] [-b BODY]
+                      [-a ATTACHMENT] [-l]
 
-Use the send command to send mail. Body can be passed as an argument,
-or typed in a nano shell. Use optional --lessgo command for sending
-mail without confirmation
+Use the send command to send mail. Body can be passed as an argument, or typed
+in a nano shell. Use optional --lessgo command for sending mail without
+confirmation
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -87,16 +87,12 @@ optional arguments:
                         receiver's email address, eg. '-r
                         "avithewinner1508@gmail.com"'
   -sub SUBJECT, --subject SUBJECT
-                        email's subject, eg. '-sub "CA Endsem
-                        Submission"'
+                        email's subject, eg. '-sub "CA Endsem Submission"'
   -t TEMPLATE, --template TEMPLATE
-						template of email body, eg.
-                        '-t="assignment_template"'
-  -b BODY, --body BODY  email's body, eg. '-b "Message Body Comes
-                        Here"'
+                        template of email body, eg. '-t="assignment_template"'
+  -b BODY, --body BODY  email's body, eg. '-b "Message Body Comes Here"'
   -a ATTACHMENT, --attachment ATTACHMENT
-                        email's attachment path, eg.
-                        '~/Desktop/CA_Endsem.pdf'
+                        email's attachment path, eg. '~/Desktop/CA_Endsem.pdf'
   -l, --lessgo          skip confirmation before sending mail
 ```
 
