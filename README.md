@@ -13,14 +13,16 @@ Sending last minute mails using conventional tools can get annoying and tiresome
 
 ```
 $ git clone https://github.com/<USER_NAME>/quick-email-cli
+
+* add line export PYTHONPATH=/path/to/project/quick-email-cli to ~/.bashrc *
+
 $ cd quick-email-cli/
 
 * activate virtual environment *
 
 $ pip install -r requirements.txt
-$ pip install -e .
+$ pip install .
 ```
-
 
 Check installation by running
 
