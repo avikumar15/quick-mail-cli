@@ -59,7 +59,7 @@ optional arguments:
 ```
 
 
-Create your [OAuth client ID](https://console.developers.google.com/apis/credentials/) and download the credentials.json file.
+Create your [OAuth client ID](https://console.developers.google.com/apis/credentials/) and select app type as Desktop App and download the credentials.json file.
 <h2></h2>
 
 Then run the init command to authenticate gmail, and generate token. This command is required to be run only once.
