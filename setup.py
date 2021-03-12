@@ -8,8 +8,10 @@ current_path = pathlib.Path(__file__).parent
 with open(os.path.join(current_path, 'requirements.txt'), encoding='utf-8') as f:
     install_requires = f.read().split('\n')
 
-# print(install_requires)
-
+"""
+print(install_requires)
+print(open('README.md', 'r', encoding='utf-8').read())
+"""
 setup(
     name='quickmail',
     description='A simple commandline application for sending mails quickly',
@@ -18,6 +20,7 @@ setup(
     author='Avi Kumar Singh',
     author_email='avikumar.singh1508@gmail.com',
     python_requires='>=2.6',
+    long_description_content_type="text/markdown",
     long_description=open('README.md', 'r', encoding='utf-8').read(),
     package_dir={'': 'src'},
     entry_points={'console_scripts': ['quickmail=src.quickmail.cli:execute']},
@@ -25,7 +28,6 @@ setup(
     license="MIT",
     keywords=['CLI', 'gmail', 'email'],
     # platforms='any',
-
     # http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
         "Development Status :: 3 - Alpha",

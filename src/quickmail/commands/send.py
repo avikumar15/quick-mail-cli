@@ -26,11 +26,11 @@ class SendCommand:
         parser.add_argument('-r',
                             '--receiver',
                             required=True,
-                            help="receiver's email address, eg. '-r \"avithewinner1508@gmail.com\"' ")
+                            help="receiver's email address, eg. '-r \"xyz@gmail.com\"' ")
         parser.add_argument('-sub',
                             '--subject',
                             required=True,
-                            help="email's subject, eg. '-sub \"CA Endsem Submission\"'")
+                            help="email's subject, eg. '-sub \"XYZ submission\"'")
         parser.add_argument('-t',
                             '--template',
                             help="template of email body, eg. '-t=\"assignment_template\"' ")
@@ -39,7 +39,7 @@ class SendCommand:
                             help="email's body, eg. '-b \"Message Body Comes Here\"'")
         parser.add_argument('-a',
                             '--attachment',
-                            help="email's attachment path, eg. '~/Desktop/CA_Endsem.pdf' ")
+                            help="email's attachment path, eg. '~/Desktop/XYZ_Endsem.pdf' ")
         parser.add_argument('-l',
                             '--lessgo',
                             action='store_true',

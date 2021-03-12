@@ -47,15 +47,16 @@ A command line interface to send mail without any hassle
 
 positional arguments:
   {clear,init,send,template}
-    clear            clear the body of message from local or even the
-                     token if --justdoit argument is added
-    init             initialise token and set your email id
-    send             send the mail
-    template         manage templates of mail body
+    clear               clear the body of message from local or even the token if
+                        --justdoit argument is added
+    init                initialise token and set your email id
+    send                send the mail
+    template            manage templates of mail body
 
 optional arguments:
-  -h, --help         show this help message and exit
-  -v, --version      print current cli version
+  -h, --help            show this help message and exit
+  -v, --version         print current cli version
+
 ```
 
 
@@ -79,23 +80,22 @@ Now you are all set. Use the send command to send mail.
 usage: quickmail send [-h] -r RECEIVER -sub SUBJECT [-t TEMPLATE] [-b BODY]
                       [-a ATTACHMENT] [-l]
 
-Use the send command to send mail. Body can be passed as an argument, or typed
-in a nano shell. Use optional --lessgo command for sending mail without
-confirmation
+Use the send command to send mail. Body can be passed as an argument, or typed in
+a nano shell. Use optional --lessgo command for sending mail without confirmation
 
 optional arguments:
   -h, --help            show this help message and exit
   -r RECEIVER, --receiver RECEIVER
-                        receiver's email address, eg. '-r
-                        "avithewinner1508@gmail.com"'
+                        receiver's email address, eg. '-r "xyz@gmail.com"'
   -sub SUBJECT, --subject SUBJECT
-                        email's subject, eg. '-sub "CA Endsem Submission"'
+                        email's subject, eg. '-sub "XYZ submission"'
   -t TEMPLATE, --template TEMPLATE
                         template of email body, eg. '-t="assignment_template"'
   -b BODY, --body BODY  email's body, eg. '-b "Message Body Comes Here"'
   -a ATTACHMENT, --attachment ATTACHMENT
-                        email's attachment path, eg. '~/Desktop/CA_Endsem.pdf'
+                        email's attachment path, eg. '~/Desktop/XYZ_Endsem.pdf'
   -l, --lessgo          skip confirmation before sending mail
+
 ```
 
 Body and attachments are optional arguments. Body can be either passed as an argument otherwise it can also be typed in the nano shell (Use -t argument to use a template body). Use the --lessgo (shorthand -l) to skip confirmation of mail, for quicker mail deliveries.
@@ -110,13 +110,13 @@ To clear the cli storage, use the clear command. Use --justdoit (shorthand -j) t
 ```
 usage: quickmail clear [-h] [-j]
 
-Use the clear command to clear all email body that are saved in your
-home directories. Additionally, pass --justdoit to remove the
-credential files as well
+Use the clear command to clear all email body that are saved in your home
+directories. Additionally, pass --justdoit to remove the credential files as well
 
 optional arguments:
   -h, --help      show this help message and exit
   -j, --justdoit  clear storage including the credentials and token
+
 ```
 
 To manage templates use the template command.
@@ -138,19 +138,14 @@ positional arguments:
 
 optional arguments:
   -h, --help          show this help message and exit
+
 ```
 
 Following is a recording of the terminal session which records the usage of `quickmail` from init command till send command. 
 
 <h3></h3>
 
-[![asciicast](https://asciinema.org/a/5B8bdkDSp6rXjqo6feVbRSrMw.svg)](https://asciinema.org/a/5B8bdkDSp6rXjqo6feVbRSrMw)
-
-For subsequent usage, just send command is enough.
-
-<h3></h3>
-
-[![asciicast](https://asciinema.org/a/XozAmmZXCOaGcpAJGEYEH93Ia.svg)](https://asciinema.org/a/XozAmmZXCOaGcpAJGEYEH93Ia)
+[![asciicast](https://asciinema.org/a/78mPkSTa0rTK3TXhnkgRDP6RO.svg)](https://asciinema.org/a/78mPkSTa0rTK3TXhnkgRDP6RO)
 
 ### Improvements and Bugs
 
