@@ -9,8 +9,8 @@ from google.auth.transport.requests import Request
 
 from argparse import ArgumentParser, Namespace
 from zope.interface import implementer
-from src.quickmail.commands import ICommand
-from src.quickmail.utils.misc import heavy_tick, heavy_exclamation, quick_mail_dir, quick_mail_creds_file, quick_mail_token_file
+from quickmail.commands import ICommand
+from quickmail.utils.misc import heavy_tick, heavy_exclamation, quick_mail_dir, quick_mail_creds_file, quick_mail_token_file
 
 SCOPES = ['https://www.googleapis.com/auth/gmail.send',
           'https://www.googleapis.com/auth/gmail.readonly']

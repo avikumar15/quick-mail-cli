@@ -4,8 +4,8 @@ import os
 import subprocess
 from argparse import ArgumentParser, Namespace
 from zope.interface import implementer
-from src.quickmail.commands import ICommand
-from src.quickmail.utils.misc import quick_mail_dir, heavy_tick, quick_mail_template_dir, party_popper_tada
+from quickmail.commands import ICommand
+from quickmail.utils.misc import heavy_tick, quick_mail_template_dir, party_popper_tada
 
 
 @implementer(ICommand)

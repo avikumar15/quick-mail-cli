@@ -6,7 +6,7 @@ from typing import Dict
 from zope.interface import Interface, implementer
 from zope.interface.exceptions import Invalid, MultipleInvalid
 
-from src.quickmail.utils.misc import walk_modules, command_dir_path
+from quickmail.utils.misc import walk_modules, command_dir_path
 
 
 class ICommand(Interface):
