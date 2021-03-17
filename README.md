@@ -1,5 +1,5 @@
 
-# Quick Email CLI
+# Quick Mail CLI
 
 A command line interface to send mail without any hassle.
 
