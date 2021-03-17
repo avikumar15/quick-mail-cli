@@ -12,6 +12,8 @@ from zope.interface import implementer
 from quickmail.commands import ICommand
 from quickmail.utils.misc import heavy_tick, heavy_exclamation, quick_mail_dir, quick_mail_creds_file, quick_mail_token_file
 
+from argparse import RawTextHelpFormatter
+
 SCOPES = ['https://www.googleapis.com/auth/gmail.send',
           'https://www.googleapis.com/auth/gmail.readonly']
 
@@ -21,10 +23,12 @@ class InitCommand:
     def add_arguments(self, parser: ArgumentParser) -> None:
         parser.add_argument('filepath',
                             help="Path to credentials.json")
+        
+        parser.formatter_class = RawTextHelpFormatter
+        parser.description = f'''Use the init command to initialise the token and to set up your gmail account for hassle-free mail deliveries.
 
-        parser.description = 'Use the init command to initialise the token and to set up your gmail account for ' \
-                             'hassle-free mail deliveries'
-
+If you don\'t have a credentials.json, head on to https://console.developers.google.com/apis/credentials/ and generate your credentials.json (select app type as Desktop App)'''
+        
     def check_creds_json(self, path):
 
         if os.path.exists(quick_mail_dir):
