@@ -13,9 +13,9 @@ print(install_requires)
 print(open('README.md', 'r', encoding='utf-8').read())
 """
 setup(
-    name='quickmail',
+    name='quick-mail',
     description='A simple commandline application for sending mails quickly',
-    version='1.0.6',
+    version='1.0.0',
     install_requires=install_requires,
     author='Avi Kumar Singh',
     author_email='avikumar.singh1508@gmail.com',
