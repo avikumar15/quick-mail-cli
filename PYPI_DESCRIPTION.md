@@ -1,8 +1,6 @@
 Quick Mail CLI
 =================
 
-[![PyPi version](https://pypip.in/v/quick-mail/badge.png)](https://pypi.org/project/quick-mail/)
-
 A command line interface to send mail without any hassle.
 
 ## Why this tool?
