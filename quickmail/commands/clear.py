@@ -23,7 +23,7 @@ class ClearCommand:
             return
 
         if args.justdoit:
-            saved_files = [file for file in os.listdir(quick_mail_dir) if (file.endswith('.json') or file.endswith('.json'))]
+            saved_files = [file for file in os.listdir(quick_mail_dir) if (file.endswith('.json') or file.endswith('.pickle'))]
             for file in saved_files:
                 os.remove(quick_mail_dir + '/' + file)
         else:
