@@ -39,7 +39,7 @@ six>=1.15.0
 soupsieve>=2.0.1
 transaction>=3.0.0
 uritemplate>=3.0.1
-urllib3==1.26.2
+urllib3>=1.26.4
 waitress>=1.4.4
 WebOb>=1.8.6
 WebTest>=2.0.35
