@@ -33,7 +33,7 @@ class ClearCommand:
 
     def run_command(self, args: Namespace):
 
-        if args.template_subcommand == 'add':
+        if args.template_subcommand == 'add': 
             if not os.path.exists(quick_mail_template_dir):
                 os.makedirs(quick_mail_template_dir)
 
@@ -41,8 +41,13 @@ class ClearCommand:
 
             f = open(file_path, "x")
             # print(file_path)
-            subprocess.call(['nano', file_path])
-            f.close()
+            try:
+                subprocess.call(['nano', file_path])
+                f.close()
+            except OSError:
+                f.close()
+                print('Nano not found, please install nano before you can proceed.')
+                exit(0)
 
             print('Template created, at ' + file_path + ' ' + party_popper_tada + party_popper_tada)
 
@@ -53,7 +58,7 @@ class ClearCommand:
                 template = template[:-4]
                 print(template)
         elif args.template_subcommand == 'edit':
-
+            
             file_path = quick_mail_template_dir + args.templatename + '.txt'
 
             if not os.path.exists(file_path):
@@ -61,12 +66,17 @@ class ClearCommand:
                 f = open(file_path, "x")
                 f.close()
 
-            f = open(file_path, "a")
+                f = open(file_path, "a")
 
-            subprocess.call(['nano', file_path])
-            f.close()
+                try:
+                    subprocess.call(['nano', file_path])
+                    f.close()
+                except OSError:
+                    f.close()
+                    print('Nano not found, please install nano before you can proceed.')
+                    exit(0)
 
-            print('Template edited, check: ' + file_path + ' ' + party_popper_tada + party_popper_tada)
+                print('Template edited, check: ' + file_path + ' ' + party_popper_tada + party_popper_tada)
 
     def get_desc(self) -> str:
         return 'manage templates of mail body'

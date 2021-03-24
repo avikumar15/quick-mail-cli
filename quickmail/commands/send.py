@@ -71,8 +71,14 @@ class SendCommand:
             file_path = quick_mail_dir + body_file_name
 
             f = open(file_path, "x")
-            # print(file_path)
-            subprocess.call(['nano', file_path])
+                # print(file_path)
+            try:
+                subprocess.call(['nano', file_path])
+            except OSError:
+                f.close()
+                print('Nano not found, please install nano or type the body inline')
+                exit(0)
+
             f.close()
             f = open(file_path, "r")
             body = f.read()
@@ -98,8 +104,13 @@ class SendCommand:
             f = open(file_path, "a")
             f.write(template_txt)
             f.close()
+            
+            try:
+                subprocess.call(['nano', file_path])
+            except OSError:
+                print('Nano not found, please install nano or type the body inline')
+                exit(0)
 
-            subprocess.call(['nano', file_path])
             f = open(file_path, "r")
             body = f.read()
             # print(body)
