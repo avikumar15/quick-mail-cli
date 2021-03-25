@@ -11,7 +11,7 @@ def execute():
     parser.add_argument('-v',
                         '--version',
                         action='version',
-                        version='%(prog)s 1.0.3',
+                        version='%(prog)s 1.0.4',
                         help='print current cli version')
 
     command = BaseCommand(parser)
