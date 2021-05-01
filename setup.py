@@ -15,7 +15,7 @@ print(open('PYPI_DESCRIPTION.md', 'r', encoding='utf-8').read())
 setup(
     name='quick-mail',
     description='A simple commandline application for sending mails quickly',
-    version='1.0.4',
+    version='1.0.5',
     install_requires=install_requires,
     author='Avi Kumar Singh',
     author_email='avikumar.singh1508@gmail.com',
