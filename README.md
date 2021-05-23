@@ -11,31 +11,56 @@ Sending last minute mails using conventional tools can get annoying and tiresome
 
 ## Installation
 
-Install quick-mail from the Python Package Index (PyPi)
+1. Generate your [OAuth client ID](https://console.developers.google.com/apis/credentials/) and select app type as Desktop App and download the credentials.json file.
 
-    $ pip install quick-mail
+2. Install quick-mail from any of the following methods 
 
-Or manually from this repository.
+	* The Python Package Index (PyPi)
+	
+		```
+		$ pip install quick-mail
+		```
 
-```
-$ git clone https://github.com/avikumar15/quick-mail-cli
+	* From the source-code
 
-* add line export PYTHONPATH=/path/to/project/quick-email-cli to ~/.bashrc *
+		```
+		$ git clone https://github.com/avikumar15/quick-mail-cli
 
-$ cd quick-mail-cli/
+		* add line export PYTHONPATH=/path/to/project/quick-email-cli to ~/.bashrc *
 
-* activate virtual environment *
+		$ cd quick-mail-cli/
 
-$ pip install -r requirements.txt
-$ pip install .
-```
+		* activate virtual environment *
 
-Check installation by running
+		$ pip install -r requirements.txt
+		$ pip install .
+		 ```
 
 
-```
-$ quickmail --version
-```
+	* By creating a docker image
+
+		Clone this repository and add credentials.json to the project root (Same directory as Dockerfile) and run following commands.
+
+		```
+		docker build .
+		docker run -i -t --network="host" <IMAGE_ID>
+			$ quickmail init credentials.json
+			$ * authenticate using your mail *
+			$ exit
+		docker commit <CONTAINER_ID> NEW_IMAGE_NAME:NEW_IMAGE_TAG
+		```
+
+		and then subsequently just run
+	
+		```
+		docker run -i -t <NEW_IMAGE_ID>
+		```
+
+3. Check installation by running
+	
+	```
+	$ quickmail --version
+	```
 
 ## Usage
 
@@ -65,11 +90,9 @@ optional arguments:
 
 ```
 
-
-Create your [OAuth client ID](https://console.developers.google.com/apis/credentials/) and select app type as Desktop App and download the credentials.json file.
 <h2></h2>
 
-Then run the init command to authenticate gmail, and generate token. This command is required to be run only once.
+Run the init command to authenticate gmail, and generate token. This command is required to be run only once.
 
 ```
 $ quickmail init <path/to/credentials.json>
@@ -156,4 +179,3 @@ Following is a recording of the terminal session which records the usage of `qui
 ### Improvements and Bugs
 
 Found any bugs? Or have any suggestions, feel free to open an issue.
-
